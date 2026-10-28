@@ -1,0 +1,18 @@
+{
+  "name": "onuja-jonathan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio website and customer chat backend for Onuja Jonathan",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "multer": "^2.0.2"
+  }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>Studio | Onuja Jonathan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --paper: #f6f5f0; --ink: #20231f; --muted: #73756d; --line: #deded5; --green: #2e593f; --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', 'Segoe UI', sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+    button, input, select { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { height: 70px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); }
+    .brand { font-size: 13px; font-weight: 700; }
+    .topbar a { color: var(--green); font-size: 12px; }
+    main { padding: 38px 0 70px; }
+    h1 { margin: 0 0 6px; font: 500 34px var(--serif); }
+    .intro { margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+    .panel { padding: 22px 0; border-top: 1px solid var(--line); }
+    .login { display: grid; grid-template-columns: minmax(200px, 360px) auto; gap: 12px; align-items: end; max-width: 520px; }
+    .field { display: grid; gap: 6px; min-width: 0; }
+    .field label { color: #55584f; font-size: 11px; }
+    input, select { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: 2px; background: #fbfaf6; color: var(--ink); outline: none; font-size: 12px; }
+    input:focus, select:focus { border-color: var(--green); }
+    .password-control { display: grid; grid-template-columns: minmax(0, 1fr) 40px; }
+    .password-control input { border-right: 0; }
+    .password-toggle, .quiet-button { display: grid; place-items: center; padding: 8px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+    .password-toggle svg { width: 17px; height: 17px; }
+    .button-primary { padding: 12px 17px; border: 0; border-radius: 2px; background: var(--green); color: white; cursor: pointer; font-size: 12px; }
+    .button-primary:hover { background: #214530; }
+    .status { min-height: 16px; color: var(--muted); font-size: 11px; }
+    #dashboard[hidden], #login[hidden] { display: none; }
+    .dashboard-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 23px; }
+    .dashboard-head strong { font-size: 13px; }
+    .quiet-button { display: inline-flex; gap: 8px; align-items: center; font-size: 11px; }
+    h2 { margin: 0 0 14px; font-size: 15px; font-weight: 600; }
+    .upload { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 740px; }
+    .full { grid-column: 1 / -1; }
+    input[type=file] { padding: 9px; }
+    .projects { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .project { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); padding: 7px; background: #fbfaf6; font-size: 11px; }
+    .project img { width: 44px; height: 44px; object-fit: cover; background: #e2e3dc; }
+    .project button { border: 0; background: transparent; color: #8d3b2e; cursor: pointer; font-size: 11px; }
+    .inbox { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .inbox-layout { display: grid; grid-template-columns: minmax(210px, .7fr) 1.3fr; min-height: 330px; border: 1px solid var(--line); }
+    .conversation-list { border-right: 1px solid var(--line); }
+    .conversation-row { display: grid; grid-template-columns: minmax(0, 1fr) 36px; border-bottom: 1px solid var(--line); }
+    .conversation-button { width: 100%; padding: 12px; border: 0; background: transparent; text-align: left; cursor: pointer; font-size: 11px; overflow-wrap: anywhere; }
+    .conversation-button.active { background: #e9eee4; }
+    .conversation-button small { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; }
+    .conversation-delete { display: grid; place-items: center; margin: 6px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+    .conversation-delete:hover, .message-action.delete:hover { color: #8d3b2e; }
+    .conversation-delete svg { width: 15px; height: 15px; }
+    .owner-chat { display: flex; flex-direction: column; min-width: 0; }
+    .messages { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 8px; max-height: 470px; overflow: auto; padding: 14px; }
+    .note { margin: auto; color: var(--muted); font-size: 12px; text-align: center; }
+    .message { max-width: 84%; padding: 10px 12px; border-radius: 3px; background: #e9e9e1; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+    .message.mine { align-self: flex-end; background: #e1ebdc; }
+    .message small { display: block; margin-top: 5px; color: var(--muted); font-size: 9px; }
+    .message-image { display: block; max-width: min(260px, 100%); max-height: 200px; margin-top: 5px; object-fit: contain; }
+    .message-actions { display: flex; justify-content: flex-end; gap: 4px; margin-top: 5px; }
+    .message-action { display: grid; place-items: center; width: 26px; height: 24px; padding: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+    .message-action:hover { color: var(--green); }
+    .message-action svg { width: 14px; height: 14px; }
+    .reply { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
+    .attach { display: grid; place-items: center; width: 34px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+    .attach svg { width: 17px; height: 17px; }
+    .attach:disabled, .reply button:disabled { opacity: .5; cursor: not-allowed; }
+    .file-picker { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    .reply button[type=submit] { padding: 0 14px; border: 0; background: var(--green); color: white; cursor: pointer; font-size: 12px; }
+    @media (max-width: 680px) { .wrap { width: calc(100% - 30px); } .login, .upload { grid-template-columns: 1fr; } .full { grid-column: auto; } .inbox-layout { grid-template-columns: 1fr; } .conversation-list { max-height: 180px; overflow: auto; border-right: 0; border-bottom: 1px solid var(--line); } }
+  </style>
+</head>
+<body>
+  <header class="wrap topbar"><span class="brand">ONUJA JONATHAN · STUDIO</span><a href="/">Back to portfolio ↗</a></header>
+  <main class="wrap">
+    <h1>Studio</h1>
+    <p class="intro">Manage portfolio designs and customer conversations.</p>
+    <section class="panel">
+      <form class="login" id="login">
+        <div class="field"><label for="owner-password">Studio password</label><div class="password-control"><input id="owner-password" name="password" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" aria-label="Show password" title="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div></div>
+        <button class="button-primary" type="submit">Sign in</button>
+        <span class="status" id="login-status" role="status"></span>
+      </form>
+      <div id="dashboard" hidden>
+        <div class="dashboard-head"><strong>Studio dashboard</strong><button class="quiet-button" id="logout" type="button">Sign out</button></div>
+        <section>
+          <h2>Portfolio designs</h2>
+          <form class="upload" id="upload-form">
+            <div class="field"><label for="design-title">Project title</label><input id="design-title" name="title" maxlength="60" required></div>
+            <div class="field"><label for="design-category">Category</label><select id="design-category" name="category"><option>Brand identity</option><option>Campaign</option><option>Digital</option></select></div>
+            <div class="field full"><label for="design-image">Design image</label><input id="design-image" name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required></div>
+            <button class="button-primary" type="submit">Add design</button><span class="status" id="upload-status" role="status"></span>
+          </form>
+          <div class="projects" id="projects" aria-live="polite"></div>
+        </section>
+        <section class="inbox">
+          <h2>Customer conversations</h2>
+          <div class="inbox-layout">
+            <div class="conversation-list" id="conversation-list"></div>
+            <div class="owner-chat">
+              <div class="messages" id="messages"><p class="note">Select a conversation to reply.</p></div>
+              <form class="reply" id="reply-form">
+                <input class="file-picker" id="reply-image" name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-label="Choose a picture to attach" disabled>
+                <button class="attach" id="attach-button" type="button" aria-label="Add picture to reply" title="Add picture" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 12.5 14.5 6a4 4 0 0 1 5.7 5.7l-8.8 8.8a6 6 0 0 1-8.5-8.5l8.5-8.5"/><path d="m7.5 15 8-8"/></svg></button>
+                <input id="reply-text" name="text" placeholder="Write a reply..." maxlength="500" aria-label="Your reply" disabled>
+                <button type="submit" disabled>Reply</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script>
+    const $ = selector => document.querySelector(selector);
+    let selectedConversation = null;
+    async function api(url, options = {}) {
+      const response = await fetch(url, { credentials: 'same-origin', ...options });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'The request could not be completed.');
+      return data;
+    }
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+    }
+    $('.password-toggle').addEventListener('click', event => {
+      const button = event.currentTarget;
+      const input = $('#owner-password');
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      button.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      button.setAttribute('aria-pressed', String(show));
+      button.title = show ? 'Hide password' : 'Show password';
+    });
+    async function loadProjects() {
+      const projects = await api('/api/projects');
+      const container = $('#projects');
+      container.innerHTML = '';
+      projects.forEach(project => {
+        const item = document.createElement('div');
+        item.className = 'project';
+        item.innerHTML = `<img src="${escapeHtml(project.imageUrl)}" alt=""><strong>${escapeHtml(project.title)}</strong><button type="button" data-id="${project.id}">Remove</button>`;
+        item.querySelector('button').addEventListener('click', async () => {
+          if (!confirm(`Remove ${project.title} from the portfolio?`)) return;
+          try { await api(`/api/projects/${project.id}`, { method: 'DELETE' }); await loadProjects(); }
+          catch (error) { alert(error.message); }
+        });
+        container.appendChild(item);
+      });
+    }
+    function messageBubble(message) {
+      const bubble = document.createElement('div');
+      bubble.className = `message${message.sender === 'owner' ? ' mine' : ''}`;
+      if (message.text) { const text = document.createElement('div'); text.textContent = message.text; bubble.appendChild(text); }
+      if (message.imageUrl) { const image = document.createElement('img'); image.className = 'message-image'; image.src = message.imageUrl; image.alt = 'Picture shared in chat'; image.loading = 'lazy'; bubble.appendChild(image); }
+      const time = document.createElement('small'); time.textContent = new Date(message.createdAt).toLocaleString(); bubble.appendChild(time);
+      if (message.sender === 'owner') {
+        const actions = document.createElement('div'); actions.className = 'message-actions';
+        const edit = document.createElement('button'); edit.type = 'button'; edit.className = 'message-action'; edit.title = 'Edit reply'; edit.setAttribute('aria-label', 'Edit reply'); edit.textContent = 'Edit';
+        edit.addEventListener('click', async () => {
+          const text = prompt('Edit your reply', message.text || ''); if (text === null || !text.trim()) return;
+          try { await api(`/api/owner/conversations/${selectedConversation}/messages/${message.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: text.trim() }) }); await Promise.all([loadMessages(), loadConversations()]); }
+          catch (error) { alert(error.message); }
+        });
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'message-action delete'; remove.title = 'Delete reply'; remove.setAttribute('aria-label', 'Delete reply'); remove.textContent = 'Delete';
+        remove.addEventListener('click', async () => {
+          if (!confirm('Delete this reply and its picture?')) return;
+          try { await api(`/api/owner/conversations/${selectedConversation}/messages/${message.id}`, { method: 'DELETE' }); await Promise.all([loadMessages(), loadConversations()]); }
+          catch (error) { alert(error.message); }
+        });
+        actions.append(edit, remove); bubble.appendChild(actions);
+      }
+      return bubble;
+    }
+    async function loadMessages() {
+      if (!selectedConversation) return;
+      const messages = await api(`/api/owner/conversations/${selectedConversation}/messages`);
+      const container = $('#messages'); container.innerHTML = '';
+      if (!messages.length) { container.innerHTML = '<p class="note">No messages in this conversation yet.</p>'; return; }
+      messages.forEach(message => container.appendChild(messageBubble(message)));
+      container.scrollTop = container.scrollHeight;
+    }
+    async function loadConversations() {
+      const conversations = await api('/api/owner/conversations');
+      const container = $('#conversation-list'); container.innerHTML = '';
+      conversations.forEach(conversation => {
+        const row = document.createElement('div'); row.className = 'conversation-row';
+        const button = document.createElement('button'); button.type = 'button'; button.className = `conversation-button${selectedConversation === conversation.id ? ' active' : ''}`;
+        const name = conversation.customerName || conversation.name || `Customer ${conversation.visitorId.slice(0, 6)}`;
+        button.innerHTML = `<strong>${escapeHtml(name)}</strong><small>${escapeHtml(conversation.preview || 'New conversation')}${conversation.customerEmail ? ` · ${escapeHtml(conversation.customerEmail)}` : ''}</small>`;
+        button.addEventListener('click', async () => { selectedConversation = conversation.id; $('#reply-text').disabled = false; $('#reply-image').disabled = false; $('#attach-button').disabled = false; $('#reply-form button[type="submit"]').disabled = false; await Promise.all([loadConversations(), loadMessages()]); });
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'conversation-delete'; remove.title = 'Delete conversation'; remove.setAttribute('aria-label', `Delete conversation with ${name}`); remove.textContent = '×';
+        remove.addEventListener('click', async () => {
+          if (!confirm(`Delete the conversation with ${name}? This also deletes its messages and pictures.`)) return;
+          try { await api(`/api/owner/conversations/${conversation.id}`, { method: 'DELETE' }); if (selectedConversation === conversation.id) { selectedConversation = null; $('#messages').innerHTML = '<p class="note">Select a conversation to reply.</p>'; $('#reply-text').disabled = true; $('#reply-image').disabled = true; $('#attach-button').disabled = true; $('#reply-form button[type="submit"]').disabled = true; } await loadConversations(); }
+          catch (error) { alert(error.message); }
+        });
+        row.append(button, remove); container.appendChild(row);
+      });
+      if (selectedConversation && !conversations.some(conversation => conversation.id === selectedConversation)) selectedConversation = null;
+    }
+    $('#login').addEventListener('submit', async event => {
+      event.preventDefault(); const form = event.currentTarget; const status = $('#login-status');
+      try { await api('/api/owner/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: new FormData(form).get('password') }) }); form.reset(); status.textContent = ''; await showDashboard(); }
+      catch (error) { status.textContent = error.message; }
+    });
+    async function showDashboard() { $('#login').hidden = true; $('#dashboard').hidden = false; await Promise.all([loadProjects(), loadConversations()]); }
+    $('#logout').addEventListener('click', async () => { await api('/api/owner/logout', { method: 'POST' }); selectedConversation = null; $('#dashboard').hidden = true; $('#login').hidden = false; $('#conversation-list').innerHTML = ''; $('#messages').innerHTML = '<p class="note">Select a conversation to reply.</p>'; });
+    $('#upload-form').addEventListener('submit', async event => {
+      event.preventDefault(); const form = event.currentTarget; const status = $('#upload-status'); const image = form.elements.image.files[0];
+      if (image && image.size > 4 * 1024 * 1024) { status.textContent = 'Choose an image smaller than 4 MB.'; return; }
+      try { await api('/api/projects', { method: 'POST', body: new FormData(form) }); form.reset(); status.textContent = 'Design added.'; await loadProjects(); }
+      catch (error) { status.textContent = error.message; }
+    });
+    $('#attach-button').addEventListener('click', () => $('#reply-image').click());
+    $('#reply-form').addEventListener('submit', async event => {
+      event.preventDefault(); const form = event.currentTarget; const text = form.elements.text.value.trim(); const image = form.elements.image.files[0];
+      if (!selectedConversation || (!text && !image)) return;
+      if (image && image.size > 4 * 1024 * 1024) { alert('Choose an image smaller than 4 MB.'); return; }
+      try { await api(`/api/owner/conversations/${selectedConversation}/messages`, { method: 'POST', body: new FormData(form) }); form.reset(); await Promise.all([loadMessages(), loadConversations()]); }
+      catch (error) { alert(error.message); }
+    });
+    api('/api/owner/me').then(showDashboard).catch(() => {});
+    setInterval(() => { if (!$('#dashboard').hidden) { loadConversations(); loadMessages(); } }, 3000);
+  </script>
+</body>
+</html>

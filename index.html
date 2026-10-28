@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f6f5f0">
+    <meta name="description" content="The graphic design portfolio of Onuja Jonathan. Explore brand identities, campaigns, and digital design, or start a project together.">
+    <title>Onuja Jonathan — Independent Graphic Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f6f5f0;
+            --ink: #20231f;
+            --muted: #73756d;
+            --line: #deded5;
+            --green: #2e593f;
+            --lime: #d3ec86;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'DM Sans', 'Segoe UI', sans-serif;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+        a { color: inherit; text-decoration: none; }
+        button, input, select, textarea { font: inherit; }
+        button { color: inherit; }
+        .wrap { width: min(1180px, calc(100% - 64px)); margin: 0 auto; }
+        .topbar { height: 74px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+        .wordmark { font-size: 15px; font-weight: 700; letter-spacing: 0; }
+        .wordmark span { font-weight: 400; color: var(--muted); }
+        .nav { display: flex; align-items: center; gap: 34px; font-size: 13px; }
+        .nav a:not(.nav-cta) { color: #55584f; }
+        .nav a:hover { color: var(--green); }
+        .nav-cta { padding: 11px 17px; background: var(--green); color: white; border-radius: 3px; }
+        .hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; padding: 70px 0 76px; }
+        .eyebrow { display: flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; }
+        .status-dot { height: 8px; width: 8px; border-radius: 50%; background: #81a849; box-shadow: 0 0 0 4px #81a84922; }
+        h1 { margin: 19px 0 17px; max-width: 600px; font-family: var(--serif); font-size: clamp(48px, 6.3vw, 78px); font-weight: 500; letter-spacing: 0; line-height: 1.02; }
+        h1 em { color: var(--green); font-weight: 500; }
+        .hero-copy { max-width: 420px; color: #62645d; font-size: 15px; line-height: 1.8; }
+        .hero-actions { display: flex; gap: 23px; align-items: center; margin-top: 29px; font-size: 13px; }
+        .button-primary { display: inline-flex; align-items: center; gap: 10px; padding: 14px 19px; background: var(--green); color: white; border: 0; border-radius: 3px; cursor: pointer; }
+        .button-primary:hover, .nav-cta:hover { background: #214530; }
+        .text-link { border-bottom: 1px solid #b8b9af; padding-bottom: 4px; }
+        .hero-art { min-height: 360px; position: relative; overflow: hidden; background: #d6dfcd; }
+        .hero-art img { width: 100%; height: 100%; min-height: 360px; position: absolute; inset: 0; object-fit: cover; }
+        .hero-stamp { position: absolute; right: 19px; bottom: 18px; width: 104px; height: 104px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--ink); text-align: center; font-size: 11px; line-height: 1.5; transform: rotate(9deg); }
+        .section-head { display: flex; justify-content: space-between; align-items: end; padding: 27px 0 21px; border-top: 1px solid var(--line); }
+        .section-kicker { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { margin: 8px 0 0; font: 500 36px/1.1 var(--serif); }
+        .filter-row { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 2px; }
+        .filter-button { border: 1px solid var(--line); background: transparent; padding: 8px 12px; cursor: pointer; border-radius: 2px; color: #55584f; font-size: 11px; }
+        .filter-button.active, .filter-button:hover { color: white; background: var(--green); border-color: var(--green); }
+        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 20px; padding-bottom: 74px; }
+        .project { min-width: 0; animation: appear .35s ease both; }
+        .project[hidden] { display: none; }
+        .project-image { position: relative; overflow: hidden; aspect-ratio: 1.23; background: #e2e3dc; }
+        .project-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; }
+        .project:hover .project-image img { transform: scale(1.035); }
+        .project-meta { display: flex; justify-content: space-between; align-items: start; gap: 12px; padding-top: 13px; }
+        .project-title { margin: 0; font-size: 14px; font-weight: 600; }
+        .project-category { margin-top: 5px; color: var(--muted); font-size: 11px; }
+        .project-year { color: var(--muted); font-size: 11px; }
+        .owner-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; padding: 36px 0 68px; border-top: 1px solid var(--line); }
+        .customer-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; padding: 36px 0 54px; border-top: 1px solid var(--line); }
+        body.account-required { overflow: hidden; }
+        body.account-required > .topbar, body.account-required main > :not(#customer-account), body.account-required > .site-footer, body.account-required .chat-panel, body.account-required .chat-launcher { display: none !important; }
+        body.account-required main { width: 100%; margin: 0; }
+        body.account-required .customer-section { position: fixed; z-index: 20; inset: 0; width: 100%; min-height: 100vh; grid-template-columns: minmax(0, .9fr) minmax(300px, 1.1fr); align-items: center; justify-content: center; gap: 56px; margin: 0; padding: 48px max(32px, calc((100vw - 1000px) / 2)); border: 0; background: var(--paper); overflow-y: auto; }
+        body.account-required .customer-section .owner-copy { max-width: 430px; }
+        body.account-required .customer-section .owner-copy h2 { font-size: 46px; }
+        .customer-forms { display: grid; gap: 14px; }
+        .account-mode { display: inline-flex; width: fit-content; border: 1px solid var(--line); padding: 3px; gap: 3px; }
+        .account-mode button { border: 0; background: transparent; padding: 8px 12px; cursor: pointer; color: var(--muted); font-size: 11px; }
+        .account-mode button.active { background: var(--green); color: white; }
+        .account-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .account-form[hidden], .customer-profile[hidden], .customer-register[hidden] { display: none; }
+        .customer-profile { display: grid; gap: 13px; }
+        .customer-profile-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .customer-profile-head strong { font-size: 13px; }
+        .customer-section .form-status { grid-column: 1 / -1; }
+        .owner-copy h2 { max-width: 340px; }
+        .owner-copy p { max-width: 350px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+        .upload-form { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+        .field { display: grid; gap: 6px; }
+        .field.full { grid-column: 1 / -1; }
+        .field label { color: #55584f; font-size: 11px; }
+        .field input, .field select, .field textarea, .chat-input { width: 100%; border: 1px solid var(--line); border-radius: 2px; padding: 11px 12px; background: #fbfaf6; color: var(--ink); outline: none; font-size: 12px; }
+        .field input:focus, .field select:focus, .field textarea:focus, .chat-input:focus { border-color: var(--green); }
+        .password-control { display: grid; grid-template-columns: minmax(0, 1fr) 40px; }
+        .password-control input { min-width: 0; border-right: 0; }
+        .password-control input:focus { position: relative; z-index: 1; }
+        .password-toggle { display: grid; place-items: center; border: 1px solid var(--line); background: #fbfaf6; color: var(--muted); cursor: pointer; }
+        .password-toggle:hover { color: var(--green); border-color: var(--green); }
+        .password-toggle svg { width: 17px; height: 17px; }
+        .field input[type=file] { padding: 9px; }
+        .upload-form .button-primary { justify-self: start; }
+        .owner-login { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; }
+        .owner-tools { display: grid; gap: 22px; }
+        .owner-tools[hidden], .owner-login[hidden] { display: none; }
+        .owner-tools-head { display: flex; justify-content: space-between; align-items: center; }
+        .owner-tools-head strong { font-size: 13px; }
+        .quiet-button { padding: 8px 11px; background: transparent; border: 1px solid var(--line); cursor: pointer; font-size: 11px; }
+        .owner-inbox { border-top: 1px solid var(--line); padding-top: 17px; }
+        .owner-inbox h3 { margin: 0 0 12px; font-size: 13px; }
+        .inbox-layout { display: grid; grid-template-columns: minmax(130px, .7fr) 1.3fr; min-height: 200px; border: 1px solid var(--line); }
+        .conversation-list { border-right: 1px solid var(--line); }
+        .conversation-row { display: grid; grid-template-columns: minmax(0, 1fr) 36px; align-items: stretch; border-bottom: 1px solid var(--line); }
+        .conversation-button { display: block; width: 100%; padding: 12px; text-align: left; background: transparent; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; font-size: 11px; }
+        .conversation-row .conversation-button { border-bottom: 0; min-width: 0; overflow-wrap: anywhere; }
+        .conversation-button.active { background: #e9eee4; }
+        .conversation-button small { display: block; margin-top: 4px; color: var(--muted); }
+        .conversation-delete { display: grid; place-items: center; margin: 6px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+        .conversation-delete:hover { background: #f0e5e0; color: #8d3b2e; }
+        .conversation-delete svg { width: 15px; height: 15px; }
+        .owner-chat { display: flex; flex-direction: column; min-width: 0; }
+        .owner-chat-messages { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 8px; max-height: 260px; overflow: auto; padding: 12px; }
+        .owner-chat-messages .message.mine { align-self: flex-end; }
+        .owner-reply { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 10px; border-top: 1px solid var(--line); }
+        .form-status { min-height: 15px; color: var(--muted); font-size: 11px; }
+        .delete-project { position: absolute; top: 9px; right: 9px; padding: 7px 9px; border: 0; background: #20231fcc; color: white; cursor: pointer; font-size: 10px; }
+        .chat-launcher { position: fixed; right: 25px; bottom: 24px; z-index: 4; display: inline-flex; gap: 9px; align-items: center; border: 0; border-radius: 3px; background: var(--green); color: white; padding: 14px 17px; cursor: pointer; box-shadow: 0 5px 22px #20231f24; font-size: 13px; }
+        .chat-launcher svg { width: 17px; height: 17px; }
+        .chat-panel { position: fixed; right: 25px; bottom: 82px; z-index: 5; display: none; flex-direction: column; width: min(360px, calc(100vw - 32px)); height: min(470px, calc(100vh - 120px)); border: 1px solid var(--line); background: #fbfaf6; box-shadow: 0 10px 42px #20231f25; }
+        .chat-panel.open { display: flex; animation: appear .18s ease both; }
+        .chat-head { display: flex; justify-content: space-between; align-items: center; padding: 15px 16px; background: var(--green); color: white; }
+        .chat-head strong { font-size: 13px; }
+        .chat-head small { display: block; margin-top: 4px; color: #dce8df; font-size: 10px; }
+        .chat-close { border: 0; background: transparent; color: white; cursor: pointer; font-size: 22px; line-height: 1; }
+        .chat-messages { display: flex; flex: 1; flex-direction: column; gap: 10px; overflow-y: auto; padding: 15px; }
+        .chat-note { margin: auto 0; color: var(--muted); text-align: center; font-size: 12px; line-height: 1.6; }
+        .message { max-width: 83%; padding: 10px 12px; border-radius: 3px; background: #e9e9e1; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+        .message.mine { align-self: flex-end; background: #e1ebdc; }
+        .message small { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; }
+        .message-image { display: block; max-width: min(220px, 100%); max-height: 190px; margin-top: 3px; object-fit: contain; }
+        .message-actions { display: flex; justify-content: flex-end; gap: 3px; margin-top: 5px; }
+        .message-action { display: grid; place-items: center; width: 25px; height: 24px; padding: 0; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+        .message-action:hover { color: var(--green); }
+        .message-action.delete:hover { color: #8d3b2e; }
+        .message-action svg { width: 14px; height: 14px; }
+        .chat-form { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 8px; padding: 12px; border-top: 1px solid var(--line); }
+        .owner-reply { grid-template-columns: 32px minmax(0, 1fr) auto; }
+        .attach-button { display: grid; place-items: center; width: 32px; height: 36px; border: 1px solid var(--line); background: transparent; cursor: pointer; }
+        .attach-button:hover { border-color: var(--green); color: var(--green); }
+        .attach-button:disabled { opacity: .45; cursor: not-allowed; }
+        .attach-button svg { width: 17px; height: 17px; }
+        .file-picker { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+        .chat-form button { padding: 0 13px; border: 0; border-radius: 2px; background: var(--green); color: white; cursor: pointer; font-size: 12px; }
+        .site-footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0 27px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+        @keyframes appear { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 760px) {
+            .wrap { width: min(100% - 36px, 560px); }
+            .topbar { height: 64px; }
+            .nav { gap: 16px; font-size: 12px; }
+            .nav a:nth-child(2) { display: none; }
+            .nav-cta { padding: 10px 12px; }
+            .hero { grid-template-columns: 1fr; gap: 30px; padding: 53px 0 54px; }
+            h1 { max-width: 500px; font-size: clamp(48px, 11vw, 68px); }
+            .hero-art, .hero-art img { min-height: 290px; }
+            .gallery { grid-template-columns: repeat(2, 1fr); gap: 23px 13px; padding-bottom: 55px; }
+            .section-head { align-items: start; flex-direction: column; gap: 18px; }
+            .owner-section { grid-template-columns: 1fr; gap: 20px; padding-bottom: 50px; }
+            body.account-required .customer-section { grid-template-columns: 1fr; gap: 24px; align-content: center; padding: 30px 24px; }
+            body.account-required .customer-section .owner-copy h2 { font-size: 38px; }
+        }
+        @media (max-width: 430px) {
+            .wrap { width: calc(100% - 30px); }
+            .wordmark { font-size: 13px; }
+            .gallery { grid-template-columns: 1fr; }
+            .project-image { aspect-ratio: 1.35; }
+            .upload-form { grid-template-columns: 1fr; }
+            .owner-login { grid-template-columns: 1fr; }
+            .inbox-layout { grid-template-columns: 1fr; }
+            .conversation-list { max-height: 130px; overflow: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+            .field.full { grid-column: auto; }
+            .site-footer { flex-direction: column; gap: 7px; }
+            .chat-launcher { right: 15px; bottom: 15px; }
+            .chat-panel { right: 15px; bottom: 72px; }
+        }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+    </style>
+</head>
+<body class="account-required">
+    <header class="wrap topbar">
+        <a class="wordmark" href="#home">ONUJA JONATHAN <span>®</span></a>
+        <nav class="nav" aria-label="Main navigation">
+            <a href="#work">Selected work</a>
+            <a href="#customer-account">Customer account</a>
+            <a class="nav-cta" href="#contact">Start a project <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="wrap hero" id="home">
+            <div>
+                <div class="eyebrow"><span class="status-dot"></span> Independent graphic designer</div>
+                <h1>Good design<br>makes a <em>feeling</em><br>visible.</h1>
+                <p class="hero-copy">I'm Onuja Jonathan, a graphic designer building thoughtful identities and visuals for people with something to say.</p>
+                <div class="hero-actions">
+                    <a class="button-primary" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
+                    <a class="text-link" href="#contact">Let's talk about your project</a>
+                </div>
+            </div>
+            <div class="hero-art" aria-label="Colorful editorial graphic design composition">
+                <img src="https://images.unsplash.com/photo-1550859492-d5da9d8e45f3?auto=format&fit=crop&w=1200&q=85" alt="Abstract artwork in warm yellow, green, and pink" fetchpriority="high">
+                <div class="hero-stamp">Ideas made<br>to be seen<br>↗</div>
+            </div>
+        </section>
+
+        <section class="wrap" id="work">
+            <div class="section-head">
+                <div><div class="section-kicker">A few things I've made</div><h2>Selected work</h2></div>
+                <div class="filter-row" role="group" aria-label="Filter projects">
+                    <button class="filter-button active" type="button" data-filter="All">All work</button>
+                    <button class="filter-button" type="button" data-filter="Brand identity">Brand identity</button>
+                    <button class="filter-button" type="button" data-filter="Campaign">Campaign</button>
+                    <button class="filter-button" type="button" data-filter="Digital">Digital</button>
+                </div>
+            </div>
+            <div class="gallery" id="gallery" aria-live="polite"></div>
+        </section>
+
+        <section class="wrap customer-section" id="customer-account">
+            <div class="owner-copy">
+                <div class="section-kicker">Your account</div>
+                <h2>Keep your project details close.</h2>
+                <p>Create an account to keep your conversations and contact details available when you return on another device.</p>
+            </div>
+            <div class="customer-forms">
+                <div class="account-mode" id="account-mode" role="group" aria-label="Customer account access">
+                    <button class="active" type="button" data-mode="login">Sign in</button>
+                    <button type="button" data-mode="register">Create account</button>
+                </div>
+                <form class="account-form" id="customer-login-form">
+                    <div class="field full"><label for="customer-login-email">Email</label><input id="customer-login-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+                    <div class="field full"><label for="customer-login-password">Password</label><div class="password-control"><input id="customer-login-password" name="password" type="password" autocomplete="current-password" required><button class="password-toggle" type="button" data-target="customer-login-password" aria-label="Show password" title="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div></div>
+                    <button class="button-primary" type="submit">Sign in</button>
+                    <span class="form-status" id="customer-login-status" role="status"></span>
+                </form>
+                <form class="account-form customer-register" id="customer-register-form" hidden>
+                    <div class="field"><label for="customer-name">Your name</label><input id="customer-name" name="name" autocomplete="name" maxlength="80" required></div>
+                    <div class="field"><label for="customer-email">Email</label><input id="customer-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+                    <div class="field"><label for="customer-phone">Phone</label><input id="customer-phone" name="phone" type="tel" autocomplete="tel" maxlength="30"></div>
+                    <div class="field"><label for="customer-organization">Business or organization</label><input id="customer-organization" name="organization" autocomplete="organization" maxlength="100"></div>
+                    <div class="field full"><label for="customer-website">Website</label><input id="customer-website" name="website" type="url" placeholder="https://example.com" maxlength="200"></div>
+                    <div class="field full"><label for="customer-register-password">Password (12 characters minimum)</label><div class="password-control"><input id="customer-register-password" name="password" type="password" autocomplete="new-password" minlength="12" required><button class="password-toggle" type="button" data-target="customer-register-password" aria-label="Show password" title="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div></div>
+                    <button class="button-primary" type="submit">Create account</button>
+                    <span class="form-status" id="customer-register-status" role="status"></span>
+                </form>
+                <form class="customer-profile" id="customer-profile" hidden>
+                    <div class="customer-profile-head"><strong id="customer-profile-heading">Your contact details</strong><button class="quiet-button" id="customer-logout" type="button">Sign out</button></div>
+                    <div class="account-form">
+                        <div class="field"><label for="profile-name">Name</label><input id="profile-name" name="name" maxlength="80" required></div>
+                        <div class="field"><label for="profile-email">Email</label><input id="profile-email" name="email" type="email" maxlength="254" required></div>
+                        <div class="field"><label for="profile-phone">Phone</label><input id="profile-phone" name="phone" type="tel" maxlength="30"></div>
+                        <div class="field"><label for="profile-organization">Business or organization</label><input id="profile-organization" name="organization" maxlength="100"></div>
+                        <div class="field full"><label for="profile-website">Website</label><input id="profile-website" name="website" type="url" maxlength="200"></div>
+                        <button class="button-primary" type="submit">Save details</button>
+                        <span class="form-status" id="customer-profile-status" role="status"></span>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="wrap site-footer" id="contact">
+        <span>© <span id="year"></span> Onuja Jonathan. Designed with intention.</span>
+        <a href="mailto:hello@onujajonathan.com">Have a project in mind? Say hello ↗</a>
+    </footer>
+
+    <section class="chat-panel" id="chat-panel" aria-label="Chat with Onuja Jonathan" aria-hidden="true">
+        <div class="chat-head"><div><strong>Let's talk</strong><small>Send a message about your project</small></div><button class="chat-close" id="chat-close" type="button" aria-label="Close chat">×</button></div>
+        <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+        <form class="chat-form" id="chat-form">
+            <input class="file-picker" id="chat-image" name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-label="Choose a picture to attach">
+            <button class="attach-button" id="chat-attach-button" type="button" aria-label="Add picture to message" title="Add picture"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 12.5 14.5 6a4 4 0 0 1 5.7 5.7l-8.8 8.8a6 6 0 0 1-8.5-8.5l8.5-8.5"/><path d="m7.5 15 8-8"/></svg></button>
+            <input class="chat-input" id="chat-input" name="text" placeholder="Write a message..." maxlength="500" aria-label="Your message">
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l1.5-3.5A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01" stroke-linecap="round" stroke-width="2.5"/></svg>
+        Chat with me
+    </button>
+
+    <script>
+        const starterProjects = [
+            { title: 'Sunday Market', category: 'Brand identity', year: '2025', image: 'photo-1558655146-d09347e92766', alt: 'Bold colorful branding and editorial design' },
+            { title: 'Soft Geometry', category: 'Digital', year: '2025', image: 'photo-1550745165-9bc0b252726f', alt: 'Colorful digital art and graphic shapes' },
+            { title: 'Field Notes', category: 'Campaign', year: '2024', image: 'photo-1544816155-12df9643f363', alt: 'Printed notebooks and tactile stationery' },
+            { title: 'Everyday Objects', category: 'Brand identity', year: '2024', image: 'photo-1490312278390-ab64016e0aa9', alt: 'Carefully arranged design objects' },
+            { title: 'A New Perspective', category: 'Campaign', year: '2024', image: 'photo-1531058020387-3be344556be6', alt: 'Immersive art and exhibition installation' },
+            { title: 'Color Studies', category: 'Digital', year: '2023', image: 'photo-1541701494587-cb58502866ab', alt: 'Vibrant abstract colors in motion' }
+        ];
+        let uploadedProjects = [];
+        let activeFilter = 'All';
+        const gallery = document.getElementById('gallery');
+
+        async function api(url, options = {}) {
+            const response = await fetch(url, { credentials: 'same-origin', ...options });
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(result.error || 'Something went wrong. Please try again.');
+            return result;
+        }
+
+        function renderProjects() {
+            const projects = [...uploadedProjects, ...starterProjects];
+            gallery.innerHTML = '';
+            projects.filter(project => activeFilter === 'All' || project.category === activeFilter).forEach(project => {
+                const card = document.createElement('article');
+                card.className = 'project';
+                const image = project.imageUrl || `https://images.unsplash.com/${project.image}?auto=format&fit=crop&w=900&q=80`;
+                const year = project.year || new Date().getFullYear();
+                card.innerHTML = `<div class="project-image"><img src="${escapeHtml(image)}" alt="${escapeHtml(project.alt || project.title)}" loading="lazy"></div><div class="project-meta"><div><h3 class="project-title">${escapeHtml(project.title)}</h3><div class="project-category">${escapeHtml(project.category)}</div></div><span class="project-year">${year}</span></div>`;
+                gallery.appendChild(card);
+            });
+        }
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+        }
+        document.querySelectorAll('.password-toggle').forEach(button => button.addEventListener('click', () => {
+            const input = document.getElementById(button.dataset.target);
+            const showPassword = input.type === 'password';
+            input.type = showPassword ? 'text' : 'password';
+            const label = showPassword ? 'Hide password' : 'Show password';
+            button.setAttribute('aria-label', label);
+            button.setAttribute('aria-pressed', String(showPassword));
+            button.title = label;
+            button.innerHTML = showPassword
+                ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8M9.9 5.2A10.7 10.7 0 0 1 12 5c6.2 0 9.5 7 9.5 7a14 14 0 0 1-3.1 3.8M6.2 6.2C3.9 7.8 2.5 12 2.5 12s3.3 7 9.5 7a10 10 0 0 0 3-.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+                : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2.5 12s3.3-6 9.5-6 9.5 6 9.5 6-3.3 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>';
+        }));
+        function createMessageBubble(message, viewer, handlers = {}) {
+            const bubble = document.createElement('div');
+            bubble.className = `message${message.sender === viewer ? ' mine' : ''}`;
+            if (message.text) {
+                const text = document.createElement('div');
+                text.textContent = message.text;
+                bubble.appendChild(text);
+            }
+            if (message.imageUrl) {
+                const image = document.createElement('img');
+                image.className = 'message-image';
+                image.src = message.imageUrl;
+                image.alt = 'Picture shared in chat';
+                image.loading = 'lazy';
+                bubble.appendChild(image);
+            }
+            const time = document.createElement('small');
+            time.textContent = new Date(message.createdAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            bubble.appendChild(time);
+            if (message.sender === viewer) {
+                const actions = document.createElement('div');
+                actions.className = 'message-actions';
+                const edit = document.createElement('button');
+                edit.type = 'button';
+                edit.className = 'message-action';
+                edit.title = 'Edit message';
+                edit.setAttribute('aria-label', 'Edit message');
+                edit.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m14 5 5 5M4 20l4.5-1 11-11a2.1 2.1 0 0 0-3-3l-11 11L4 20Z" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                edit.addEventListener('click', handlers.onEdit);
+                const remove = document.createElement('button');
+                remove.type = 'button';
+                remove.className = 'message-action delete';
+                remove.title = 'Delete message';
+                remove.setAttribute('aria-label', 'Delete message');
+                remove.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M10 11v6m4-6v6M5.5 7l1 14h11l1-14M9 7V4h6v3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                remove.addEventListener('click', handlers.onDelete);
+                actions.append(edit, remove);
+                bubble.appendChild(actions);
+            }
+            return bubble;
+        }
+        async function editCustomerMessage(message) {
+            const text = prompt('Edit your message', message.text || '');
+            if (text === null || !text.trim()) return;
+            try {
+                await api(`/api/chat/messages/${message.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: text.trim() }) });
+                await renderMessages();
+            } catch (error) { alert(error.message); }
+        }
+        async function deleteCustomerMessage(message) {
+            if (!confirm('Delete this message and its picture?')) return;
+            try {
+                await api(`/api/chat/messages/${message.id}`, { method: 'DELETE' });
+                await renderMessages();
+            } catch (error) { alert(error.message); }
+        }
+        document.querySelectorAll('.filter-button').forEach(button => button.addEventListener('click', () => {
+            activeFilter = button.dataset.filter;
+            document.querySelectorAll('.filter-button').forEach(item => item.classList.toggle('active', item === button));
+            renderProjects();
+        }));
+        async function loadProjects() {
+            uploadedProjects = await api('/api/projects');
+            renderProjects();
+        }
+
+        const chatPanel = document.getElementById('chat-panel');
+        const chatLauncher = document.getElementById('chat-launcher');
+        const chatMessages = document.getElementById('chat-messages');
+        async function renderMessages() {
+            let messages = [];
+            try { messages = await api('/api/chat/messages'); } catch { /* The local page can still open without its backend. */ }
+            chatMessages.innerHTML = '';
+            if (!messages.length) {
+                const note = document.createElement('p');
+                note.className = 'chat-note';
+                note.textContent = 'Hi! Tell me a little about what you are looking to create.';
+                chatMessages.appendChild(note);
+            }
+            messages.forEach(message => {
+                chatMessages.appendChild(createMessageBubble(message, 'customer', {
+                    onEdit: () => editCustomerMessage(message),
+                    onDelete: () => deleteCustomerMessage(message)
+                }));
+            });
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        function toggleChat(open) {
+            chatPanel.classList.toggle('open', open);
+            chatPanel.setAttribute('aria-hidden', String(!open));
+            chatLauncher.setAttribute('aria-expanded', String(open));
+            if (open) { document.getElementById('chat-input').focus(); renderMessages(); }
+        }
+        chatLauncher.addEventListener('click', () => toggleChat(!chatPanel.classList.contains('open')));
+        document.getElementById('chat-close').addEventListener('click', () => toggleChat(false));
+        document.getElementById('chat-attach-button').addEventListener('click', () => document.getElementById('chat-image').click());
+        document.getElementById('chat-form').addEventListener('submit', async event => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const text = form.elements.text.value.trim();
+            const image = form.elements.image.files[0];
+            if (!text && !image) return;
+            if (image && image.size > 4 * 1024 * 1024) { alert('Please choose a picture smaller than 4 MB.'); return; }
+            try {
+                await api('/api/chat/messages', { method: 'POST', body: new FormData(form) });
+                form.reset();
+                renderMessages();
+            } catch (error) { alert(error.message); }
+        });
+
+        let customerMode = 'login';
+        document.querySelectorAll('#account-mode button').forEach(button => button.addEventListener('click', () => {
+            customerMode = button.dataset.mode;
+            document.querySelectorAll('#account-mode button').forEach(item => item.classList.toggle('active', item === button));
+            document.getElementById('customer-login-form').hidden = customerMode !== 'login';
+            document.getElementById('customer-register-form').hidden = customerMode !== 'register';
+        }));
+        function setCustomerProfile(customer) {
+            for (const field of ['name', 'email', 'phone', 'organization', 'website']) {
+                document.getElementById(`profile-${field}`).value = customer[field] || '';
+            }
+            document.getElementById('customer-profile-heading').textContent = `Your details, ${customer.name}`;
+        }
+        async function refreshCustomerStatus() {
+            try {
+                const result = await api('/api/customer/me');
+                document.body.classList.remove('account-required');
+                setCustomerProfile(result.customer);
+                document.getElementById('account-mode').hidden = true;
+                document.getElementById('customer-login-form').hidden = true;
+                document.getElementById('customer-register-form').hidden = true;
+                document.getElementById('customer-profile').hidden = false;
+                await Promise.all([renderMessages(), loadProjects()]);
+            } catch {
+                document.body.classList.add('account-required');
+                document.getElementById('account-mode').hidden = false;
+                document.getElementById('customer-profile').hidden = true;
+                document.getElementById('customer-login-form').hidden = customerMode !== 'login';
+                document.getElementById('customer-register-form').hidden = customerMode !== 'register';
+            }
+        }
+        document.getElementById('customer-login-form').addEventListener('submit', async event => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const status = document.getElementById('customer-login-status');
+            const credentials = Object.fromEntries(new FormData(form).entries());
+            try {
+                await api('/api/customer/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(credentials) });
+                status.textContent = '';
+                form.reset();
+                await refreshCustomerStatus();
+            } catch (error) { status.textContent = error.message; }
+        });
+        document.getElementById('customer-register-form').addEventListener('submit', async event => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const status = document.getElementById('customer-register-status');
+            const details = Object.fromEntries(new FormData(form).entries());
+            try {
+                await api('/api/customer/register', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(details) });
+                status.textContent = '';
+                form.reset();
+                await refreshCustomerStatus();
+            } catch (error) { status.textContent = error.message; }
+        });
+        document.getElementById('customer-profile').addEventListener('submit', async event => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const status = document.getElementById('customer-profile-status');
+            const details = Object.fromEntries(new FormData(form).entries());
+            try {
+                const result = await api('/api/customer/profile', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(details) });
+                setCustomerProfile(result.customer);
+                status.textContent = 'Your details have been saved.';
+            } catch (error) { status.textContent = error.message; }
+        });
+        document.getElementById('customer-logout').addEventListener('click', async () => {
+            await api('/api/customer/logout', { method: 'POST' });
+            document.body.classList.add('account-required');
+            document.getElementById('customer-profile').hidden = true;
+            document.getElementById('account-mode').hidden = false;
+            customerMode = 'login';
+            document.querySelectorAll('#account-mode button').forEach(button => button.classList.toggle('active', button.dataset.mode === 'login'));
+            document.getElementById('customer-login-form').hidden = false;
+            document.getElementById('customer-register-form').hidden = true;
+            await renderMessages();
+        });
+        setInterval(() => {
+            if (chatPanel.classList.contains('open')) renderMessages();
+        }, 3000);
+        document.getElementById('year').textContent = new Date().getFullYear();
+        renderProjects();
+        refreshCustomerStatus();
+    </script>
+</body>
+</html>
