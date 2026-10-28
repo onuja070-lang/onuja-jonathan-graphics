@@ -171,14 +171,20 @@
             .wordmark { font-size: 13px; }
             .gallery { grid-template-columns: 1fr; }
             .project-image { aspect-ratio: 1.35; }
+            .field input, .field select, .field textarea, .chat-input { min-height: 44px; font-size: 16px; }
+            .password-control { grid-template-columns: minmax(0, 1fr) 44px; }
+            .password-toggle { min-height: 44px; }
             .upload-form { grid-template-columns: 1fr; }
             .owner-login { grid-template-columns: 1fr; }
             .inbox-layout { grid-template-columns: 1fr; }
             .conversation-list { max-height: 130px; overflow: auto; border-right: 0; border-bottom: 1px solid var(--line); }
             .field.full { grid-column: auto; }
             .site-footer { flex-direction: column; gap: 7px; }
-            .chat-launcher { right: 15px; bottom: 15px; }
-            .chat-panel { right: 15px; bottom: 72px; }
+            .chat-launcher { right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); min-height: 44px; }
+            .chat-panel { top: auto; right: 12px; bottom: calc(72px + env(safe-area-inset-bottom)); width: min(420px, calc(100% - 24px)); height: min(560px, calc(100dvh - 112px - env(safe-area-inset-bottom))); }
+            .chat-form, .owner-reply { grid-template-columns: 44px minmax(0, 1fr) 56px; gap: 7px; padding: 10px; }
+            .attach-button { width: 44px; height: 44px; }
+            .chat-form button { min-height: 44px; padding: 0 10px; font-size: 14px; }
         }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
     </style>
